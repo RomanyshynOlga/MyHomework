@@ -1,14 +1,18 @@
-
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Cursor</title>
-</head>
-<body>
-    <h1>{{ variable }}</h1>
-</body>
-</html>
+{% extends "base.html" %}
+{% block main %}
+    <div class="container">
+        <div class="row">
+            {% for user in users %}
+                <div class="card" style="width: 15rem;">
+                  <div class="card-body">
+                      <h5 class="card-subtitle mb-2 text-muted">{{ user["first_name"] }} {{ user["last_name"] }}</h5>
+                      <p class="card-text">{{ user["work_area"] }}</p>
+                      <h6 class="card-title">{{ user["email"] }}</h6>
+                    <a href="/user-edit/{{ user['id'] }}" class="card-link">Update</a>
+                    <a href="/users/delete/{{ user['id'] }}" class="card-link">Delete</a>
+                  </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}
